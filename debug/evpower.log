@@ -1,0 +1,116 @@
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015000-2632420498", "BootNotification", {
+		"chargePointModel":	"EVC32NK",
+		"chargePointVendor":	"EVPOWER",
+		"firmwareVersion":	"WEB20200910V1.00",
+		"chargePointSerialNumber":	"EG3A508247",
+		"protocolVersion":	"1.16",
+		"chargerId":	"73704009",
+		"chargerIp":	"192.168.1.100",
+		"mac":	"32-3b-55-6a-69-6b",
+		"chargerTime":	"2021-02-03T01:50:00Z"
+	}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015000-2632420498",{"currentTime":"2021-02-03T01:50:01.665Z","interval":10,"status":"Accepted"}]
+INFO:ocpp:73704009: send [2,"7033a76d-c7c6-426b-a4c9-7f9be4913d8c","ChangeAvailability",{"connectorId":1,"type":"Operative"}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015001-3968746916", "StatusNotification", {
+		"connectorId":	0,
+		"errorCode":	"NoError",
+		"info":	"0",
+		"status":	"Available",
+		"timestamp":	"2021-02-03T01:50:01Z",
+		"subMode":	{
+			"connectorFeedback":	"Unplugged",
+			"supportCurrent":	0,
+			"parkSensor":	"NotImplemented",
+			"groundLock":	"NotImplemented",
+			"cableLock":	"NotImplemented"
+		},
+		"lastChargingCycle":	12
+	}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015001-3968746916",{}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015001-678998821", "StatusNotification", {
+		"connectorId":	1,
+		"errorCode":	"NoError",
+		"info":	"0",
+		"status":	"Available",
+		"timestamp":	"2021-02-03T01:50:01Z",
+		"subMode":	{
+			"connectorFeedback":	"Unplugged",
+			"supportCurrent":	0,
+			"parkSensor":	"NotImplemented",
+			"groundLock":	"NotImplemented",
+			"cableLock":	"NotImplemented"
+		},
+		"lastChargingCycle":	12
+	}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015001-678998821",{}]
+INFO:ocpp:73704009: receive message [3, "7033a76d-c7c6-426b-a4c9-7f9be4913d8c", {
+		"status":	"Accepted"
+	}]
+Accepted
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015001-1046504960", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015001-1046504960",{"currentTime":"2021-02-03T01:50:02.514Z"}]
+INFO:ocpp:73704009: send [2,"66ca0b9e-a629-4151-8879-45b1c89e4ccd","SetChargingProfile",{"connectorId":0,"csChargingProfiles":{"chargingProfileId":0,"transactionId":0,"stackLevel":1,"chargingProfilePurpose":"ChargePointMaxProfile","chargingProfileKind":"Recurring","recurrencyKind":"Daily","chargingSchedule":{"duration":86400,"chargingRateUnit":"A","chargingSchedulePeriod":[{"startPeriod":0,"limit":32,"numberPhases":1}],"minChargingRate":6}}}]
+INFO:ocpp:73704009: receive message [3, "66ca0b9e-a629-4151-8879-45b1c89e4ccd", {
+		"status":	"Accepted"
+	}]
+Accepted
+0.32
+[100]
+1 [0] [0] [0]
+32.0
+INFO:ocpp:73704009: send [2,"2e9d6cd3-8233-4aee-b30f-ea6577a85078","RemoteStartTransaction",{"idTag":"FFFFFFFF","connectorId":0,"chargingProfile":{"chargingProfileId":1,"transactionId":0,"stackLevel":1,"chargingProfilePurpose":"TxProfile","chargingProfileKind":"Recurring","recurrencyKind":"Daily","chargingSchedule":{"duration":2400,"chargingRateUnit":"A","chargingSchedulePeriod":[{"startPeriod":0,"limit":32.0}]}}}]
+INFO:ocpp:73704009: receive message [3, "2e9d6cd3-8233-4aee-b30f-ea6577a85078", {
+		"status":	"Rejected"
+	}]
+Rejected
+chargepoint is not initialized yet
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015012-3087838595", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015012-3087838595",{"currentTime":"2021-02-03T01:50:12.977Z"}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015021-3147821657", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015021-3147821657",{"currentTime":"2021-02-03T01:50:23.091Z"}]
+0.32
+[100]
+1 [0] [0] [0]
+32.0
+INFO:ocpp:73704009: send [2,"7e3685c6-3399-4a0f-90da-23883e2f8cec","RemoteStartTransaction",{"idTag":"FFFFFFFF","connectorId":0,"chargingProfile":{"chargingProfileId":1,"transactionId":0,"stackLevel":1,"chargingProfilePurpose":"TxProfile","chargingProfileKind":"Recurring","recurrencyKind":"Daily","chargingSchedule":{"duration":2400,"chargingRateUnit":"A","chargingSchedulePeriod":[{"startPeriod":0,"limit":32.0}]}}}]
+INFO:ocpp:73704009: receive message [3, "7e3685c6-3399-4a0f-90da-23883e2f8cec", {
+		"status":	"Rejected"
+	}]
+Rejected
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015030-1964128398", "MeterValues", {
+		"connectorId":	1,
+		"meterValue":	[{
+				"timestamp":	"2021-02-03T01:50:30Z",
+				"sampledValue":	[{
+						"value":	"7040",
+						"context":	"Sample.Clock",
+						"measurand":	"Power.Offered",
+						"unit":	"W"
+					}]
+			}]
+	}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015030-1964128398",{}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015032-2064793123", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015032-2064793123",{"currentTime":"2021-02-03T01:50:32.901Z"}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015041-1607868684", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015041-1607868684",{"currentTime":"2021-02-03T01:50:42.954Z"}]
+0.32
+[100]
+1 [0] [0] [0]
+32.0
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015051-2090200517", "Heartbeat", {
+}]
+INFO:ocpp:73704009: send [3,"73704009-20210203T015051-2090200517",{"currentTime":"2021-02-03T01:50:52.908Z"}]
+INFO:ocpp:73704009: receive message [2, "73704009-20210203T015100-4188246567", "MeterValues", {
+		"connectorId":	1,
+		"meterValue":	[{
+				"timestamp":	"2021-02-03T01:51:00Z",
+				"sampledValue":	[{
+						"value":	"7040",
+						"context":	"Sample.Clock",
+						"measurand":	"Powe
