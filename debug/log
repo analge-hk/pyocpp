@@ -1,0 +1,6 @@
+INFO:ocpp:73704009: send [3,"73704009-20210201T091700-3012310239",{}]
+INFO:ocpp:73704009: send [2,"59ea5bd9-87bc-4508-a025-eba7be347514","SetChargingProfile",{"connectorId":0,"csChargingProfiles":{"chargingProfileId":0,"transactionId":0,"stackLevel":1,"chargingProfilePurpose":"ChargePointMaxProfile","chargingProfileKind":"Recurring","recurrencyKind":"Daily","chargingSchedule":{"duration":86400,"chargingRateUnit":"A","chargingSchedulePeriod":[{"startPeriod":0,"limit":32,"numberPhases":1}],"minChargingRate":6}}}]
+INFO:ocpp:73704009: receive message [3, "59ea5bd9-87bc-4508-a025-eba7be347514", {
+		"status":	"Rejected"
+	}]
+Rejected
