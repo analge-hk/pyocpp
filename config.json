@@ -1,0 +1,21 @@
+{
+  "udp_server_host": "",
+  "cp": {
+    "1301": {
+      "dev_id_list": [1],
+      "xcms_server_name": "WJY",
+      "cms_server_url": "ws://47.106.213.5:5174/ws",
+      "cms_cp_id": "000080001"
+    },
+    "100370004": {
+      "dev_id_list": [2,3],
+      "cms_server_name": "",
+      "cms_server_url": ""
+    },
+    "10403392": {
+      "dev_id_list": [5, 6],
+      "cms_server_name": "",
+      "cms_server_url": ""
+    }
+  }
+}
