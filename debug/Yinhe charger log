@@ -1,0 +1,32 @@
+INFO:root:Protocols Matched: ocpp1.6
+ocpp/Cental/CEIIA-00012
+INFO:root:Protocols Matched: ocpp1.6
+ocpp/Cental/CEIIA-00012
+INFO:root:Protocols Matched: ocpp1.6
+ocpp/Cental/CEIIA-00012
+INFO:root:Protocols Matched: ocpp1.6
+ocpp/Cental/CEIIA-00012
+INFO:root:Protocols Matched: ocpp1.6
+ocpp/Cental/CEIIA-00012
+INFO:root:Protocols Matched: ocpp1.6
+73704009
+73704009
+INFO:ocpp:73704009: receive message [2,"161484931010395","BootNotification",{"chargeBoxSerialNumber":"00000001","chargePointModel":"ICSW22C","chargePointSerialNumber":"IOCH01","chargePointVendor":"ioc","firmwareVersion":"21030201-20123101"}]
+ICSW22C from ioc booted.
+INFO:ocpp:73704009: send [3,"161484931010395",{"currentTime":"2021-03-04T09:15:10.922Z","interval":10,"status":"Accepted"}]
+INFO:ocpp:73704009: send [2,"8a190c9c-82a1-4fb2-8610-8696327903af","ChangeAvailability",{"connectorId":1,"type":"Operative"}]
+INFO:ocpp:73704009: receive message [2,"161484931010683","StatusNotification",{"connectorId":0,"errorCode":"NoError","status":"Available","timestamp":"2021-03-04T09:15:10.000Z"}]
+INFO:ocpp:73704009: send [3,"161484931010683",{}]
+INFO:ocpp:73704009: receive message [3,"8a190c9c-82a1-4fb2-8610-8696327903af",{"status":"Accepted"}]
+Accepted
+INFO:ocpp:73704009: receive message [2,"161484931111009","StatusNotification",{"connectorId":1,"errorCode":"NoError","status":"Available","timestamp":"2021-03-04T09:15:10.000Z"}]
+INFO:ocpp:73704009: send [3,"161484931111009",{}]
+INFO:ocpp:73704009: send [2,"ab8d777a-04e4-471a-91fc-0182b8c5c3fb","SetChargingProfile",{"connectorId":0,"csChargingProfiles":{"chargingProfileId":0,"transactionId":0,"stackLevel":1,"chargingProfilePurpose":"ChargePointMaxProfile","chargingProfileKind":"Recurring","recurrencyKind":"Daily","chargingSchedule":{"duration":86400,"startSchedule":"2021-08-04T00:00:00Z","chargingRateUnit":"A","chargingSchedulePeriod":[{"startPeriod":0,"limit":16,"numberPhases":1}],"minChargingRate":6}}}]
+INFO:ocpp:73704009: receive message [3,"ab8d777a-04e4-471a-91fc-0182b8c5c3fb",{"status":"Accepted"}]
+Accepted
+INFO:ocpp:73704009: send [2,"9b19beb9-74c0-48f4-93c4-41b20e06a723","RemoteStartTransaction",{"idTag":"FFFFFFFFFFFFFFFFFFFF","chargingUnit":"Min","chargingTarget":10,"connectorId":1}]
+INFO:ocpp:73704009: receive message [3,"9b19beb9-74c0-48f4-93c4-41b20e06a723",{"status":"Accepted"}]
+Accepted
+INFO:ocpp:73704009: receive message [2,"161484931515459","StatusNotification",{"connectorId":1,"errorCode":"NoError","status":"Preparing","timestamp":"2021-03-04T09:15:15Z"}]
+INFO:ocpp:73704009: send [3,"161484931515459",{}]
+INFO:ocpp:73704009: receive message [2,"161484931515714","StatusNotification",{"connectorId":0,"errorCode":"NoError","status":"Unavailable","timestamp":"2021-03-04T09:15:15Z"}]
