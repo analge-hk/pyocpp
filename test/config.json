@@ -1,0 +1,64 @@
+{
+	"modbus_host": "192.168.10.51",
+	"modbus_slave_id": 11,
+	"modbus_scene_onoff_reg_start": 3001,
+	"modbus_device_dac_reg_start": 1001,
+	"modbus_device_current_reg_start": 5002,
+	"cp_max_current_default": 32,
+	"modbus_enable": false,
+	"udp_enable": true,
+	"udp_server_host": "192.168.10.58",
+	"cp": {
+		"12345678": {
+			"cp_num": 1,
+			"ocpp_meter_value": false,
+			"cms_list": {
+				"PSN": {
+					"cms_cp_id": "12345678",
+					"cms_server_url": "ws://localhost:9001"
+				}
+			}
+		},
+		"000080002": {
+			"cp_num": 2,
+			"cms_list": {
+				"WJY": {
+					"cms_server_url": "ws://47.106.213.5:5174/ws"
+				},
+				"PSN": {
+					"cms_server_url": "ws://localhost:9001"
+				}
+			}
+		},
+		"84702902490431": {
+			"cp_num": 2,
+			"cms_list": {
+				"PSN": {
+					"cms_main": true,
+					"cms_cp_id": "84702902490431",
+					"cms_server_url": "ws://localhost:9001"
+				}
+			}
+		},
+		"17890622687032": {
+			"cp_num": 3,
+			"cms_list": {
+				"PSN": {
+					"cms_main": true,
+					"cms_cp_id": "17890622687032",
+					"cms_server_url": "ws://localhost:9001"
+				}
+			}
+		},
+		"SN20211227111111": {
+			"cp_num": 4,
+			"cms_list": {
+				"PSN": {
+					"cms_main": true,
+					"cms_cp_id": "SN20211227111111",
+					"cms_server_url": "ws://localhost:9001"
+				}
+			}
+		}
+	}
+}
