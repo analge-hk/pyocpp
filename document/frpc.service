@@ -1,0 +1,16 @@
+#frpc.service
+[Unit]
+Description=frpc
+Wants=network-online.target
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+ExecStart=/home/pi/frp_0.36.2_linux_arm/frpc -c /home/pi/frp_0.36.2_linux_arm/frpc.ini
+ExecStop=/bin/kill $MAINPID
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
