@@ -1,0 +1,15 @@
+[Unit]
+Description=pyocpp
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u central_system.py
+WorkingDirectory=/home/pi/OCPP_Server_Setup
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
