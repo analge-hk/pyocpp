@@ -2,8 +2,9 @@ import asyncio
 from CpChannelAbs import CpChannelAbs
 import logging
 import websockets
-from websockets.protocol import WebSocketCommonProtocol
+#from websockets.protocol import WebSocketCommonProtocol
 import config
+import ssl
 
 # Init Log
 logging.basicConfig(level=logging.INFO)
@@ -21,21 +22,41 @@ class CpChannelCMS(CpChannelAbs):
         cms_cp_id = self._config.get("cms_cp_id", self.id)
         wslink = f"{cms_server_url}/{cms_cp_id}"
         logger.info(f"try to connect ocpp server {wslink}")
-        async with websockets.connect(wslink, subprotocols=['ocpp1.6']) as ws_cms: # connect to CMS server
-            self._ws_cms = ws_cms
-            logger.info(f"connect to {wslink} success.")
-            
-            evt.set() # Mark CMS successfully connected
 
-            while True: # recv CMS message
-                try:
-                    message = await self._ws_cms.recv() # CMS -> CP
-                    new_message = await self.send(message)
-                    if new_message is not None:
-                        logger.info(f"{self.id} {self.name}->CP: {message}")
-                except websockets.exceptions.ConnectionClosed as e:
-                    logger.warn(f"{self.id} {self.name} websocket close! {repr(e)}")
-                    return    
+        if wslink.startswith("wss"):
+            # for wss://CMS url, SSL is not validated
+            ssl_context = ssl._create_unverified_context()
+            async with websockets.connect(wslink, subprotocols=['ocpp1.6'], ssl=ssl_context) as ws_cms: # connect to CMS server
+                self._ws_cms = ws_cms
+                logger.info(f"connect to {wslink} success.")
+                
+                evt.set() # Mark CMS successfully connected
+
+                while True: # recv CMS message
+                    try:
+                        message = await self._ws_cms.recv() # CMS -> CP
+                        new_message = await self.send(message)
+                        if new_message is not None:
+                            logger.info(f"{self.id} {self.name}->CP: {message}")
+                    except websockets.exceptions.ConnectionClosed as e:
+                        logger.warn(f"{self.id} {self.name} websocket close! {repr(e)}")
+                        return    
+        else:
+            async with websockets.connect(wslink, subprotocols=['ocpp1.6']) as ws_cms: # connect to CMS server
+                self._ws_cms = ws_cms
+                logger.info(f"connect to {wslink} success.")
+                
+                evt.set() # Mark CMS successfully connected
+
+                while True: # recv CMS message
+                    try:
+                        message = await self._ws_cms.recv() # CMS -> CP
+                        new_message = await self.send(message)
+                        if new_message is not None:
+                            logger.info(f"{self.id} {self.name}->CP: {message}")
+                    except websockets.exceptions.ConnectionClosed as e:
+                        logger.warn(f"{self.id} {self.name} websocket close! {repr(e)}")
+                        return    
 
     async def ws_cp_recv_loop(self, evt:asyncio.Event): # recv CP message
         await evt.wait() # wait for connect to CMS

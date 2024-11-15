@@ -2,10 +2,11 @@ import asyncio
 from asyncio.tasks import FIRST_COMPLETED
 import logging
 import websockets
-from websockets.protocol import WebSocketCommonProtocol
+#from websockets.protocol import WebSocketServerProtocol
 from CpChannelAbs import CpChannelAbs
 from config import g_cp_config
 from CpChannelCMS import CpChannelCMS
+import task_websocket_debug
 
 # Init Log
 logging.basicConfig(level=logging.INFO)
@@ -21,8 +22,17 @@ async def start():  # start a websocket server
     await ws_server.wait_closed()
 
 
-async def ws_on_connect(ws_cp: WebSocketCommonProtocol, path):  # handle websocket client
+async def ws_on_connect(ws_cp: websockets, path):  # handle websocket client
     logger.info(f"ws_on_connect path={path}")
+
+    # parse charge ID ------------------------------------------- config file cp id
+    path_split = path.strip('/').split('/')
+    config_cp_id = path_split[-1]
+
+    # add ws debug function
+    if(len(path_split) > 1 and path_split[0].lower()=="debug"):
+        await task_websocket_debug.ws_debug_loop(config_cp_id, ws_cp)
+        return await ws_cp.close()
 
     try:
         requested_protocols = ws_cp.request_headers['Sec-WebSocket-Protocol']
@@ -35,10 +45,7 @@ async def ws_on_connect(ws_cp: WebSocketCommonProtocol, path):  # handle websock
     else:
         logger.warning('Protocols Mismatched | Expected Subprotocols: %s,'' but client supports  %s | Closing connection', ws_cp.available_subprotocols, requested_protocols)
         return await ws_cp.close()
-
-    # parse charge ID ------------------------------------------- config file cp id
-    path_split = path.strip('/').split('/')
-    config_cp_id = path_split[-1]
+    
     logger.info(f"websocket connect CP {config_cp_id}")
 
     # alway connect to PSN
@@ -48,7 +55,7 @@ async def ws_on_connect(ws_cp: WebSocketCommonProtocol, path):  # handle websock
     # get cp config
     the_cp_config = g_cp_config.get(config_cp_id)
     if the_cp_config:
-        cmsName = the_cp_config.get("cms_server_name","").strip()
+        cmsName = the_cp_config.get("cms_server_name","CMS").strip()
         cmsUrl = the_cp_config.get("cms_server_url","").strip()
         if len(cmsName)>0 and len(cmsUrl)>0:
             config_cms_list[cmsName] = the_cp_config
@@ -68,15 +75,15 @@ async def ws_on_connect(ws_cp: WebSocketCommonProtocol, path):  # handle websock
 
     # wait task complete, and close all task when any task complete
     done, pending = await asyncio.wait(list_task, return_when=FIRST_COMPLETED)
-    for task in done:
-        logger.warning(f"{config_cp_id}: task done!")
+    # for task in done:
+    #     logger.error(f"{config_cp_id}: task done!")
     [task.cancel() for task in list_task]
-    logger.warning(f"{config_cp_id}: all task done!")
+    logger.error(f"{config_cp_id}: all task done!")
 
 # loop of recv message from CP
 
 
-async def ws_cp_loop(config_cp_id: str, ws_cp: WebSocketCommonProtocol, dict_channel: dict):
+async def ws_cp_loop(config_cp_id: str, ws_cp:websockets, dict_channel: dict):
     while True:
         try:
             message: str = await ws_cp.recv()
@@ -85,7 +92,7 @@ async def ws_cp_loop(config_cp_id: str, ws_cp: WebSocketCommonProtocol, dict_cha
             for channel in dict_channel.values():  # CP mesage route to all channel
                 await channel.put(message)
         except websockets.exceptions.ConnectionClosed:
-            logger.warning(f"{config_cp_id}: Websockets Connection Closed!")
+            logger.error(f"{config_cp_id}: Websockets Connection Closed!")
             return
 
 if __name__ == '__main__':

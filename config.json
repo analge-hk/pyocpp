@@ -1,21 +1,50 @@
 {
-  "udp_server_host": "",
+  "udp_server_host": "192.168.1.20",
+  "meter": {
+    "ip": "192.168.1.125",
+    "port": 5000,
+    "current_overload": 45,
+    "disconnect_timeout": 20
+  },
+  "xmeter": {
+    "ip": "192.168.1.20",
+    "meter_type": 1,
+    "slave_id": 11,
+    "port": 502,
+    "current_overload": 79,
+    "disconnect_timeout": 10,
+    "reg_start": 2111,
+    "reg_count": 3
+  },
+  "masterbox_disconnect_timeout": 7,
   "cp": {
-    "1301": {
-      "dev_id_list": [1],
-      "xcms_server_name": "WJY",
-      "cms_server_url": "ws://47.106.213.5:5174/ws",
-      "cms_cp_id": "000080001"
+    "12716430": {
+      "dev_id_list": [1, 2],
+      "txprofile_phase2_start_period": 6,
+      "txprofile_phase2_limit": 0,
+      "cms_server_url": "wss://eaas-singapore-ocpp.starcharge.com:6668/ocppj"
+    },
+    "12716401": {
+      "dev_id_list": [5, 6],
+      "txprofile_phase2_start_period": 6,
+      "txprofile_phase2_limit": 0,
+      "cms_server_url": "wss://eaas-singapore-ocpp.starcharge.com:6668/ocppj"
+    },
+    "12716437": {
+      "dev_id_list": [3, 4],
+      "txprofile_phase2_start_period": 6,
+      "txprofile_phase2_limit": 0,
+      "cms_server_url": "wss://eaas-singapore-ocpp.starcharge.com:6668/ocppj"
+    },
+    "12661111": {
+      "dev_id_list": [11, 12],
+      "cms_server_url": "wss://eaas-singapore-ocpp.starcharge.com:6668/ocppj"
+    },
+    "100370003": {
+      "dev_id_list": [13]
     },
     "100370004": {
-      "dev_id_list": [2,3],
-      "cms_server_name": "",
-      "cms_server_url": ""
-    },
-    "10403392": {
-      "dev_id_list": [5, 6],
-      "cms_server_name": "",
-      "cms_server_url": ""
+      "dev_id_list": [14]
     }
   }
 }

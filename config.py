@@ -15,3 +15,5 @@ g_cp_config = config_file.get("cp")
 g_cp_ocpp = {} #handle charge point object, id=10037
 g_connector = {} #handle cp-connector,  id=10037-1
 g_gc_ip = config_file.get("udp_server_host")
+g_task_duration_disable:bool = config_file.get("task_duration_disable", False)
+g_masterbox_disconnect_timeout:int = config_file.get("masterbox_disconnect_timeout", 10)
